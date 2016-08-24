@@ -1,18 +1,15 @@
-FROM sclo/postgresql-94-centos7
+FROM centos/postgres
 
-USER root
 RUN yum update -y \
-    && yum install -y python-dev lzop pv daemontools curl build-essential sudo 
+    && yum install -y python-devel libevent-devel lzop pv curl gcc gcc-c++ make
 
-RUN curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | python 
+RUN curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | python \
+    && pip install wal-e
 
-RUN pip install wal-e 
-
-USER root
-RUN yum erase -y build-essential python-dev \
+RUN yum erase -y python-devel \
     && yum autoremove -y \
     && yum clean all \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /tmp/* /var/tmp/*
 
 ADD make_db.sh /docker-entrypoint-initdb.d/
 ADD setup-wale.sh /docker-entrypoint-initdb.d/
