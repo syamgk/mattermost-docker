@@ -1,5 +1,6 @@
 FROM centos/centos
 
+RUN yum update -y && yum install -y epel-release
 RUN yum update -y && yum install -y nginx
 
 COPY mattermost /etc/nginx/sites-available/
