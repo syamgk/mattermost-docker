@@ -1,4 +1,4 @@
-FROM centos/centos 
+FROM registry.centos.org/centos/centos 
 
 RUN yum update -y && yum install -y tar nc && yum clean all
 RUN mkdir -p /mattermost/data
