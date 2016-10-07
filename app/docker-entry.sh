@@ -1,4 +1,3 @@
-
 #!/bin/bash
 config=/mattermost/config/config.json
 DB_HOST=${DB_HOST:-db}
