@@ -7,6 +7,7 @@ RUN curl -LO https://releases.mattermost.com/3.3.0/mattermost-team-3.3.0-linux-a
 
 RUN rm /mattermost/config/config.json
 COPY config.template.json /mattermost/config/config.json
+RUN chmod -R 777 /mattermost/config
 
 RUN touch /mattermost/logs/mattermost.log
 RUN chmod a+rw /mattermost/logs/mattermost.log
