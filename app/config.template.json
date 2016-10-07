@@ -1,6 +1,6 @@
 {
     "ServiceSettings": {
-        "ListenAddress": ":80",
+        "ListenAddress": ":8080",
         "MaximumLoginAttempts": 10,
         "SegmentDeveloperKey": "",
         "GoogleDeveloperKey": "",
@@ -10,6 +10,7 @@
         "EnablePostUsernameOverride": false,
         "EnablePostIconOverride": false,
         "EnableTesting": false,
+        "EnableOpenServer": true,
         "EnableSecurityFixAlert": true
     },
     "TeamSettings": {
