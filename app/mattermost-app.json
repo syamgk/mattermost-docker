@@ -10,7 +10,7 @@
   },
   "parameters":[  
     {  
-      "name":"PG_DBNAME",
+      "name":"PG_SERVICE",
       "description":"postgresql database name"
     }
   ],
