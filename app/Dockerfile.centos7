@@ -12,6 +12,8 @@ RUN chmod -R 777 /mattermost/config
 RUN touch /mattermost/logs/mattermost.log
 RUN chmod a+rw /mattermost/logs/mattermost.log
 
+RUN chmod a+w /mattermost/data
+
 COPY docker-entry.sh /
 RUN chmod +x /docker-entry.sh
 ENTRYPOINT ["/docker-entry.sh"]
