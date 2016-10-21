@@ -19,3 +19,5 @@ RUN chmod +x /docker-entry.sh
 ENTRYPOINT ["/docker-entry.sh"]
 
 EXPOSE 8080
+# for https connections
+EXPOSE 443
