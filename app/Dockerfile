@@ -3,7 +3,7 @@ FROM registry.centos.org/centos/centos
 RUN yum update -y && yum install -y tar nc && yum clean all
 RUN mkdir -p /mattermost/data
 
-RUN curl -LO https://releases.mattermost.com/3.6.0/mattermost-team-3.6.0-linux-amd64.tar.gz && tar -xf mattermost-team-3.6.0-linux-amd64.tar.gz && rm -f mattermost-team-3.6.0-linux-amd64.tar.gz
+RUN curl -LO https://releases.mattermost.com/3.5.1/mattermost-team-3.5.1-linux-amd64.tar.gz && tar -xf mattermost-team-3.5.1-linux-amd64.tar.gz && rm -f mattermost-team-3.5.1-linux-amd64.tar.gz
 
 RUN rm /mattermost/config/config.json
 COPY config.template.json /mattermost/config/config.json
