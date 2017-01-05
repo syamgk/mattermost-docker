@@ -1,20 +1,29 @@
-FROM registry.centos.org/centos/centos 
+FROM registry.centos.org/centos/centos
+
+MAINTAINER sgk <sgk@redhat.com>
+
+# Labels consumed by Red Hat build service
+LABEL Component="mattermost" \
+      Name="centos/mattermost-3.5.1-centos7" \
+      Version="3.5.1" \
+      Release="1"
+
+# Labels could be consumed by OpenShift
+LABEL io.k8s.description="Mattermost is an open source, self-hosted Slack-alternative" \
+      io.k8s.display-name="Mattermost 3.5.1" \
+      io.openshift.expose-services="8080:mattermost" \
+      io.openshift.tags="mattermost,slack"
+
 
 RUN yum update -y && yum install -y tar nc && yum clean all
-RUN mkdir -p /mattermost/data
 
 RUN curl -LO https://releases.mattermost.com/3.5.1/mattermost-team-3.5.1-linux-amd64.tar.gz && tar -xf mattermost-team-3.5.1-linux-amd64.tar.gz && rm -f mattermost-team-3.5.1-linux-amd64.tar.gz
 
-RUN rm /mattermost/config/config.json
-COPY config.template.json /mattermost/config/config.json
-RUN chmod -R 777 /mattermost/config
-
-RUN touch /mattermost/logs/mattermost.log
-RUN chmod a+rw /mattermost/logs/mattermost.log
-
-RUN chmod a+w /mattermost/data
+VOLUME ["/mattermost/config"]
+VOLUME ["/mattermost/logs"]
 
 COPY docker-entry.sh /
+
 RUN chmod +x /docker-entry.sh
 ENTRYPOINT ["/docker-entry.sh"]
 
