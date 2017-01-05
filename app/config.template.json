@@ -48,7 +48,7 @@
     },
     "FileSettings": {
         "DriverName": "local",
-        "Directory": "/mattermost/data/",
+        "Directory": "/mattermost/config/data/",
         "EnablePublicLink": true,
         "PublicLinkSalt": "A705AklYF8MFDOfcwh3I488G8vtLlVip",
         "ThumbnailWidth": 120,
