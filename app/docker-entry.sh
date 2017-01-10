@@ -5,8 +5,11 @@ DB_PORT_5432_TCP_PORT=${DB_PORT_5432_TCP_PORT:-5432}
 MM_USERNAME=${MM_USERNAME:-mmuser}
 MM_PASSWORD=${MM_PASSWORD:-mmuser_password}
 MM_DBNAME=${MM_DBNAME:-mattermost}
+MM_MIGRATE=${MM_MIGRATE:-no}
 
-curl https://raw.githubusercontent.com/syamgk/mattermost-docker/master/app/config.template.json > $config
+if [[ $MM_MIGRATE == "yes" ]]; then 
+curl https://raw.githubusercontent.com/syamgk/mattermost-docker/master/app/config.template.json > $config;
+fi
 
 echo -ne "Configure database connection..."
 sed -Ei "s/DB_HOST/$DB_HOST/" $config
