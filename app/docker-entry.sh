@@ -7,7 +7,7 @@ MM_PASSWORD=${MM_PASSWORD:-mmuser_password}
 MM_DBNAME=${MM_DBNAME:-mattermost}
 MM_MIGRATE=${MM_MIGRATE:-no}
 
-if [[ $MM_MIGRATE == "yes" ]]; then 
+if [[ $MM_MIGRATE == "no" ]]; then 
 curl https://raw.githubusercontent.com/syamgk/mattermost-docker/master/app/config.template.json > $config;
 fi
 
