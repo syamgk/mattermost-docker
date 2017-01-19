@@ -19,6 +19,10 @@ RUN yum update -y && yum install -y tar nc && yum clean all
 
 RUN curl -LO https://releases.mattermost.com/3.6.0/mattermost-team-3.6.0-linux-amd64.tar.gz && tar -xf mattermost-team-3.6.0-linux-amd64.tar.gz && rm -f mattermost-team-3.6.0-linux-amd64.tar.gz
 
+RUN set -x && \
+    curl -sL -o /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && \
+    chmod +x /usr/local/bin/jq
+
 VOLUME ["/mattermost/config"]
 VOLUME ["/mattermost/logs"]
 
