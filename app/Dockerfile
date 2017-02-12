@@ -17,7 +17,13 @@ LABEL io.k8s.description="Mattermost is an open source, self-hosted Slack-altern
 
 RUN yum update -y && yum install -y tar nc && yum clean all
 
-RUN curl -sLO https://releases.mattermost.com/3.6.2/mattermost-team-3.6.2-linux-amd64.tar.gz && tar -xf mattermost-team-3.6.2-linux-amd64.tar.gz && rm -f mattermost-team-3.6.2-linux-amd64.tar.gz
+ENV MATTERMOST_VERSION=3.6.2
+
+RUN sh -x && \
+  curl -LO https://releases.mattermost.com/${MATTERMOST_VERSION}/mattermost-team-${MATTERMOST_VERSION}-linux-amd64.tar.gz && \
+  tar -xf mattermost-team-${MATTERMOST_VERSION}-linux-amd64.tar.gz && \
+  rm -f mattermost-team-${MATTERMOST_VERSION}-linux-amd64.tar.gz
+COPY config.template.json /
 
 VOLUME ["/mattermost/config"]
 VOLUME ["/mattermost/logs"]
